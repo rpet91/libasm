@@ -6,14 +6,14 @@
 #    By: rpet <marvin@codam.nl>                       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/06/03 08:38:57 by rpet          #+#    #+#                  #
-#    Updated: 2020/06/03 10:41:34 by rpet          ########   odam.nl          #
+#    Updated: 2020/06/04 13:13:36 by rpet          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libasm.a
 SRCSDIR = srcs/
 OBJSDIR = objs/
-_SRCS = ft_strlen.s
+_SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s
 _OBJS = $(_SRCS:.s=.o)
 SRCS = $(addprefix $(SRCSDIR),$(_SRCS))
 OBJS = $(addprefix $(OBJSDIR),$(_OBJS))
@@ -24,7 +24,7 @@ FLAGS = -Wall -Werror -Wextra
 INCLUDES = libasm.h
 
 $(OBJSDIR)%.o: $(SRCSDIR)%.s
-	mkdir -p objs
+	@mkdir -p objs
 	$(NA) $(NAFLAGS) -o $@ $<
 
 all: $(NAME)
@@ -41,6 +41,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	rm -f test
+	rm -rf objs
 
 re: fclean all
 
