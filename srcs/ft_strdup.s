@@ -6,7 +6,7 @@
 #    By: rpet <marvin@codam.nl>                       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/06/08 12:42:21 by rpet          #+#    #+#                  #
-#    Updated: 2020/06/09 08:05:22 by rpet          ########   odam.nl          #
+#    Updated: 2020/06/09 09:38:51 by rpet          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,19 +17,21 @@ section .text
 	extern	_malloc
 
 _ft_strdup:
-	call _ft_strlen				; set length str in rax
+	push rbp					; save rbp on the stack
+	mov rbp, rsp				; put rsp in rbp
+	sub rsp, 16					; allocate memory on the stack
+	mov [rsp], rdi				; copy address of rdi in rsp for later use
+	call _ft_strlen				; set len in rax
 	inc rax						; add 1 to rax for the \0
-	push rdi					; save rdi for later use
-	mov rdi, rax				; set amount of rax in rdi
+	mov rdi, rax				; set rax in rdi
 	call _malloc
 	cmp rax, 0					; check if malloc succeed
-	je error					; go to error if not
-	pop rdi						; get rdi back
-	mov rsi, rdi				; set the str rsi
+	je end						; go to end if not
 	mov rdi, rax				; set the allocated memory in rdi
-	call _ft_strcpy				; copy rsi in rdi
-	ret
-error:
-	mov rax, 0
-	pop rdi
+	mov rsi, [rsp]				; set the point of the str in rsi
+	call _ft_strcpy				; copy rsi in rdi and put it in rax
+end:
+	add rsp, 16					; free/deallocate the allocated memory
+	mov rsp, rbp				; rax will point to rsp 
+	pop rbp						; retrieve rbp
 	ret
