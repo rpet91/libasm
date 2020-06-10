@@ -6,7 +6,7 @@
 #    By: rpet <marvin@codam.nl>                       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/06/08 12:42:21 by rpet          #+#    #+#                  #
-#    Updated: 2020/06/09 09:38:51 by rpet          ########   odam.nl          #
+#    Updated: 2020/06/10 15:50:53 by rpet          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ _ft_strdup:
 	call _ft_strlen				; set len in rax
 	inc rax						; add 1 to rax for the \0
 	mov rdi, rax				; set rax in rdi
-	call _malloc
+	call _malloc				; allocate memory on the heap
 	cmp rax, 0					; check if malloc succeed
 	je end						; go to end if not
 	mov rdi, rax				; set the allocated memory in rdi
