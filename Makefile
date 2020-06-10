@@ -6,22 +6,26 @@
 #    By: rpet <marvin@codam.nl>                       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/06/03 08:38:57 by rpet          #+#    #+#                  #
-#    Updated: 2020/06/04 13:13:36 by rpet          ########   odam.nl          #
+#    Updated: 2020/06/10 15:15:45 by rpet          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libasm.a
 SRCSDIR = srcs/
 OBJSDIR = objs/
-_SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s
-_OBJS = $(_SRCS:.s=.o)
-SRCS = $(addprefix $(SRCSDIR),$(_SRCS))
+_OBJS = ft_strlen.o ft_strcpy.o ft_strcmp.o ft_write.o ft_read.o ft_strdup.o
+_BONUS_OBJS = ft_atoi_base.o ft_list_push_front.o
 OBJS = $(addprefix $(OBJSDIR),$(_OBJS))
+BONUS_OBJS = $(addprefix $(OBJSDIR),$(_BONUS_OBJS))
 NA = nasm
 NAFLAGS = -f macho64
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 INCLUDES = libasm.h
+
+ifeq ($(BONUS),1)
+	OBJS += $(BONUS_OBJS)
+endif
 
 $(OBJSDIR)%.o: $(SRCSDIR)%.s
 	@mkdir -p objs
@@ -35,14 +39,22 @@ $(NAME): $(OBJS)
 test: all
 	$(CC) $(FLAGS) -I.$(INCLUDES) -L. -lasm -o test main.c
 
+test_bonus: bonus
+	$(CC) $(FLAGS) -I.$(INCLUDES) -L. -lasm -o test_bonus main_bonus.c
+
 clean:
 	rm -f $(OBJS)
+	rm -f $(BONUS_OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 	rm -f test
+	rm -f test_bonus
 	rm -rf objs
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus:
+	@make BONUS=1
+
+.PHONY: all clean fclean re bonus
