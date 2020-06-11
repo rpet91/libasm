@@ -6,7 +6,7 @@
 /*   By: rpet <marvin@codam.nl>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/02 11:23:58 by rpet          #+#    #+#                 */
-/*   Updated: 2020/06/10 10:07:04 by rpet          ########   odam.nl         */
+/*   Updated: 2020/06/11 14:47:34 by rpet          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int		main(void)
 	printf("\n");
 
 	printf("----- STRCMP: -----\n");
+	printf("Mine: [%i]\n", ft_strcmp("high", "low"));
+	printf("Real: [%i]\n", strcmp("high", "low"));
+	printf("\n");
 	printf("Mine: [%i]\n", ft_strcmp("test", "testing"));
 	printf("Real: [%i]\n", strcmp("test", "testing"));
 	printf("\n");

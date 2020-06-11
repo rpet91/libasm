@@ -6,7 +6,7 @@
 #    By: rpet <marvin@codam.nl>                       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/06/03 08:38:57 by rpet          #+#    #+#                  #
-#    Updated: 2020/06/10 15:15:45 by rpet          ########   odam.nl          #
+#    Updated: 2020/06/11 16:11:00 by rpet          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libasm.a
 SRCSDIR = srcs/
 OBJSDIR = objs/
 _OBJS = ft_strlen.o ft_strcpy.o ft_strcmp.o ft_write.o ft_read.o ft_strdup.o
-_BONUS_OBJS = ft_atoi_base.o ft_list_push_front.o
+_BONUS_OBJS = ft_atoi_base.o ft_list_push_front.o ft_list_size.o ft_list_sort.o
 OBJS = $(addprefix $(OBJSDIR),$(_OBJS))
 BONUS_OBJS = $(addprefix $(OBJSDIR),$(_BONUS_OBJS))
 NA = nasm
