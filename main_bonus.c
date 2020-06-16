@@ -6,7 +6,7 @@
 /*   By: rpet <marvin@codam.nl>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/09 09:54:33 by rpet          #+#    #+#                 */
-/*   Updated: 2020/06/11 16:10:58 by rpet          ########   odam.nl         */
+/*   Updated: 2020/06/16 15:34:25 by rpet          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ int		main(void)
 	printf("Size: [%i]\n\n", ft_list_size(list));
 	printf("----- LIST_SORT: -----\n");
 	ft_list_sort(&list, &strcmp);
+	print_list(list);
+	printf("----- LIST_REMOVE_IF: -----\n");
+	ft_list_remove_if(&list, "R", &strcmp);
 	print_list(list);
 	return (0);
 }
