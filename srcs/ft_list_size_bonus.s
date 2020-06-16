@@ -1,36 +1,25 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    ft_strcmp.s                                        :+:    :+:             #
+#    ft_list_size_bonus.s                               :+:    :+:             #
 #                                                      +:+                     #
 #    By: rpet <marvin@codam.nl>                       +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/06/04 08:29:02 by rpet          #+#    #+#                  #
-#    Updated: 2020/06/15 14:03:05 by rpet          ########   odam.nl          #
+#    Created: 2020/06/11 11:17:46 by rpet          #+#    #+#                  #
+#    Updated: 2020/06/15 15:53:03 by rpet          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 section .text
-	global _ft_strcmp
+	global	_ft_list_size
 
-_ft_strcmp:						; rsi = s1 & rdi = s2
-	xor rcx, rcx
-	xor rax, rax				; i = 0;
-loop:
-	mov cl, BYTE [rsi + rax]	; set s1[i] in cl
-	cmp cl, BYTE [rdi + rax]	; compare cl with s1[i]
-	ja lower					; cl < s1[i]
-	jb greater					; cl > s1[i]
-	cmp cl, 0					; check if \0 is found
+_ft_list_size:
+	xor rax, rax				; size = 0
+loop_list:
+	cmp rdi, 0					; check if end of list is found
 	je return
-	inc rax
-	jmp loop
-greater:
-	mov rax, 1
-	ret
-lower:
-	mov rax, -1
-	ret
+	mov rdi, [rdi + 8]			;
+	inc rax						; size++
+	jmp loop_list
 return:
-	mov rax, 0
 	ret
