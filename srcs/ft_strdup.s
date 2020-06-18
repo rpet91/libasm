@@ -6,7 +6,7 @@
 #    By: rpet <marvin@codam.nl>                       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/06/08 12:42:21 by rpet          #+#    #+#                  #
-#    Updated: 2020/06/10 15:50:53 by rpet          ########   odam.nl          #
+#    Updated: 2020/06/17 07:31:19 by rpet          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ section .text
 	extern	_malloc
 
 _ft_strdup:
-	push rbp					; save rbp on the stack
+	push rbp					; save rbp on the stack for stack allignment
 	mov rbp, rsp				; put rsp in rbp
 	sub rsp, 16					; allocate memory on the stack
 	mov [rsp], rdi				; copy address of rdi in rsp for later use
